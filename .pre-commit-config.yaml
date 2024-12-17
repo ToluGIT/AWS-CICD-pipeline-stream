@@ -1,0 +1,6 @@
+repos:
+  - repo: https://github.com/zricethezav/gitleaks
+    rev: v8.14.0
+    hooks:
+      - id: gitleaks
+        args: ["--staged"]  # Only scan staged files

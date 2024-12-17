@@ -1,0 +1,65 @@
+version: 0.2
+env:
+  parameter-store:
+    USERNAME: /myapp/docker-credentials/username
+    PASSWORD: /myapp/docker-credentials/password
+    KEY: /myapp/api/key
+    SONAR_TOKEN: /myapp/sonarcloud/token
+    SONAR_PROJECT_KEY: /myapp/sonarcloud/project-key
+  variables:
+    SONAR_ORG: "tolugit"
+    SONAR_SCANNER_VERSION: "6.2.1.4610" # Added for SonarScanner version
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto17
+      nodejs: 18
+    commands:
+      - echo "Installing dependencies..."
+      - npm install
+      - npm audit --json > audit-report.json || true
+      - yarn add eslint eslint-plugin-security --dev
+      - echo "Installing SonarScanner..."
+      - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-${SONAR_SCANNER_VERSION}-linux-x64
+      - curl --create-dirs -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${SONAR_SCANNER_VERSION}-linux-x64.zip
+      - unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
+      - export PATH=$SONAR_SCANNER_HOME/bin:$PATH
+      - export SONAR_SCANNER_OPTS="-server"
+      - sonar-scanner --version
+      - echo "SonarScanner installation complete."
+
+  pre_build:
+    commands:
+    - java -version
+    - echo "Running static code analysis with SonarCloud..."
+    - sonar-scanner -Dsonar.organization=$SONAR_ORG -Dsonar.projectKey=$SONAR_PROJECT_KEY -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
+    - echo "SonarCloud analysis completed."
+    - echo "Checking dependency vulnerabilities..."
+    - yarn audit --level high || echo "Vulnerabilities found, but continuing build..."
+
+  build:
+    commands:
+      - echo "Building Docker image..."
+      - docker login -u $USERNAME -p $PASSWORD
+      - docker build . -t toluid/netflix-react-app:latest --build-arg TMDB_V3_API_KEY=$KEY
+      - echo "Scanning Docker image for vulnerabilities with Trivy..."
+      - curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+      - trivy image toluid/netflix-react-app:latest || exit 1
+
+  post_build:
+    commands:
+      - echo "Pushing Docker image to the registry..."
+      - docker push toluid/netflix-react-app:latest
+      - echo "Build complete and Docker image pushed successfully."
+
+artifacts:
+  files:
+    - 'Dockerfile'
+    - 'appspec.yml'
+    - 'package.json'
+    - 'scripts/**/*'
+    - 'yarn.lock'
+    - 'public/**/*'
+    - 'src/**/*'
+  discard-paths: no
