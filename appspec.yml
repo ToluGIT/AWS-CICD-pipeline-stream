@@ -1,13 +1,15 @@
 version: 0.0
-os: linux
-  
-hooks:
-  AfterInstall:
-    - location: scripts/start.sh
-      timeout: 300
-      runas: root
-      
-  ApplicationStop:
-    - location: scripts/stop.sh
-      timeout: 300
-      runas: root
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: "{{TASK_DEFINITION_ARN}}"
+        LoadBalancerInfo:
+          ContainerName: "netflix-react-container"
+          ContainerPort: 80
+Hooks:
+  - BeforeInstall: "60"
+  - AfterInstall: "60"
+  - AfterAllowTestTraffic: "60"
+  - BeforeAllowTraffic: "60"
+  - AfterAllowTraffic: "60"
