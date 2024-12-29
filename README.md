@@ -1,17 +1,25 @@
-# Infrastructure Changes
+# Infrastructure Changes - ECS with EC2 and ECR
 
 ## Major Changes from Previous Version
 
 ![ECS-ECR2 signed Untitled Diagram drawio](https://github.com/user-attachments/assets/c6500077-ffb7-464d-89e3-bda5d5286957)
 
+## Deployment Infrastructure
+
+  - Previous: Direct EC2 deployment with Docker
+  - Current
+      - ECS (Elastic Container Service) with EC2 launch type
+      - Uses task definitions for container configuration
+      - Implements ECS service for management
+      - Bridge network mode for containers
+
 ### 1. CI/CD Pipeline Enhancement
-- **Previous**: Basic CI/CD with GitHub and Docker
-- **Current**: Full AWS CI/CD Integration
+
   ```
   GitHub → CodePipeline → CodeBuild → ECR → ECS → EC2
   ```
-  - CodePipeline orchestrates the entire deployment flow
-  - CodeBuild handles building and testing
+
+
 
 ### 2. IAM Roles & Permissions
 Added two and modified one IAM roles:
@@ -82,6 +90,7 @@ Added two and modified one IAM roles:
 }
 ```
 
+
 <img width="1651" alt="Screenshot 2024-12-17 at 18 53 13" src="https://github.com/user-attachments/assets/2f060802-63ff-4c77-b454-cbe41cc4224d" />
 
 <img width="923" alt="Screenshot 2024-12-17 at 19 00 49" src="https://github.com/user-attachments/assets/1ad51603-e88d-4228-b5ac-0ce54f6a02b2" />
@@ -100,8 +109,8 @@ Added two and modified one IAM roles:
 
 <img width="1723" alt="Screenshot 2024-12-17 at 19 08 44" src="https://github.com/user-attachments/assets/09e09d52-fc86-446e-af79-ec10ae523b92" />
 
-
-
+## Note
+All core application features remain the same. Changes only affect deployment and infrastructure.
 
 
 
