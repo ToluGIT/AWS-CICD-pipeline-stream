@@ -1,4 +1,4 @@
-# Netflix Clone with Secure AWS CI/CD Pipeline
+# Stream app with Secure AWS CI/CD Pipeline
 
 [![AWS](https://img.shields.io/badge/AWS-Pipeline-orange.svg)](https://aws.amazon.com/)
 [![Security](https://img.shields.io/badge/Security-DevSecOps-blue.svg)](https://aws.amazon.com/security/)
@@ -6,7 +6,7 @@
 [![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
 [![SonarCloud](https://img.shields.io/badge/Secure-SonarCloud-blue.svg)](https://sonarcloud.io/)
 
-A production-grade Netflix clone featuring a secure CI/CD pipeline built with AWS cloud-native services. This project demonstrates modern web development practices with DevSecOps implementation.
+A stream application featuring a secure CI/CD pipeline built with AWS cloud-native services. This project demonstrates modern web development practices with DevSecOps implementation.
 
 ## Table of Contents
 1. [Project Overview](#project-overview)
