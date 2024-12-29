@@ -81,3 +81,36 @@ Added two and modified one IAM roles:
   "requiresCompatibilities": ["EC2"]
 }
 ```
+
+<img width="1651" alt="Screenshot 2024-12-17 at 18 53 13" src="https://github.com/user-attachments/assets/2f060802-63ff-4c77-b454-cbe41cc4224d" />
+
+<img width="923" alt="Screenshot 2024-12-17 at 19 00 49" src="https://github.com/user-attachments/assets/1ad51603-e88d-4228-b5ac-0ce54f6a02b2" />
+
+<img width="605" alt="Screenshot 2024-12-17 at 19 01 31" src="https://github.com/user-attachments/assets/69f49a26-3c94-477e-ac26-88b64c33fb90" />
+
+<img width="640" alt="Screenshot 2024-12-17 at 19 01 50" src="https://github.com/user-attachments/assets/4d6f2aa1-125a-433b-bd39-dc4e9b6ecc49" />
+
+<img width="627" alt="Screenshot 2024-12-17 at 19 02 39" src="https://github.com/user-attachments/assets/e2bef4e2-cd1c-4817-8cb9-4cc32f391e2b" />
+
+<img width="658" alt="Screenshot 2024-12-17 at 19 02 59" src="https://github.com/user-attachments/assets/f06cd237-59c8-4016-b59b-3673ae412209" />
+
+<img width="1502" alt="Screenshot 2024-12-17 at 19 04 10" src="https://github.com/user-attachments/assets/d5125b30-b587-4a18-96d2-6a5e12ebef66" />
+
+<img width="1517" alt="Screenshot 2024-12-17 at 19 04 34" src="https://github.com/user-attachments/assets/f49e75dd-6e72-4b90-8329-f39ffc23d2fb" />
+
+<img width="1723" alt="Screenshot 2024-12-17 at 19 08 44" src="https://github.com/user-attachments/assets/09e09d52-fc86-446e-af79-ec10ae523b92" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
