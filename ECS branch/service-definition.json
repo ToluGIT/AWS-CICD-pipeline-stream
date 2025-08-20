@@ -1,0 +1,11 @@
+{
+  "cluster": "ecsstream",
+  "serviceName": "netflix-app-service",
+  "taskDefinition": "netflix-react-app-task",
+  "desiredCount": 1,
+  "launchType": "EC2",
+  "deploymentConfiguration": {
+    "maximumPercent": 200,
+    "minimumHealthyPercent": 50
+  }
+}
